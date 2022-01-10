@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "foldit config": {
+      "commandName": "Project"
+    },
+    "foldit client": {
+      "commandName": "Project",
+      "commandLineArgs": "0"
+    },
+    "foldit client 2": {
+      "commandName": "Project",
+      "commandLineArgs": "1"
+    }
+  }
+}

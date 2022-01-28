@@ -1,10 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace foldit
@@ -17,13 +12,15 @@ namespace foldit
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if(args.Length > 0)
+            if (args.Length > 0)
             {
                 Application.Run(new Form1(int.Parse(args[0])));
             }
             else
             {
-                Application.Run(new FolditConfig()); 
+                FolditConfig folditConfig = new FolditConfig();
+                Application.Run(folditConfig);
+               
 
             }
         }

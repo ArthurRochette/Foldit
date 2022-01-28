@@ -26,9 +26,12 @@ namespace foldit
             e.Graphics.Clear(Color.Transparent);
         }
 
-        protected void refresh()
+        public void refresh()
         {
-            Debug.WriteLine("resfreshing with : Color-> " + Properties.Settings.Default.Color + " accent ->"+ Properties.Settings.Default.Accent);
+            Debug.WriteLine(Properties.Settings.Default.AlphaValue);
+            Debug.WriteLine("refreshing: color " + Properties.Settings.Default.Color);
+            Debug.WriteLine("refreshing: Accent " + (AppUtils.ACCENT)Properties.Settings.Default.Accent);
+            
             AppUtils.EnableAcrylic(this, Properties.Settings.Default.Color, (AppUtils.ACCENT)Properties.Settings.Default.Accent);
             radioButtonContainer.Controls.Clear();
             for (int i = 0; i < Properties.Settings.Default.nbrGroup; i++)
@@ -42,8 +45,6 @@ namespace foldit
 
         }
 
-
-
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -53,10 +54,10 @@ namespace foldit
         private void InitializeComponent()
         {
             this.buttonCreateNewFold = new System.Windows.Forms.Button();
-            this.transparentLabel1 = new foldit.TransparentLabel();
-            this.transparentLabel2 = new foldit.TransparentLabel();
+            this.transparentLabelCreateNew = new foldit.TransparentLabel();
+            this.transparentLabelTitle = new foldit.TransparentLabel();
             this.buttonSwitchBlur = new System.Windows.Forms.Button();
-            this.transparentLabel3 = new foldit.TransparentLabel();
+            this.transparentLabelSwitch = new foldit.TransparentLabel();
             this.transparentLabelExit = new foldit.TransparentLabel();
             this.radioButtonContainer = new foldit.TransparentLayout();
             this.buttonDelete = new System.Windows.Forms.Button();
@@ -65,6 +66,7 @@ namespace foldit
             this.transparentLabelSetAccent = new foldit.TransparentLabel();
             this.numericUpDownAlpha = new System.Windows.Forms.NumericUpDown();
             this.transparentLabelAlpha = new foldit.TransparentLabel();
+            this.transparentLabelAbout = new foldit.TransparentLabel();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAlpha)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,26 +81,26 @@ namespace foldit
             this.buttonCreateNewFold.UseVisualStyleBackColor = true;
             this.buttonCreateNewFold.Click += new System.EventHandler(this.buttonCreateNewFold_Click);
             // 
-            // transparentLabel1
+            // transparentLabelCreateNew
             // 
-            this.transparentLabel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.transparentLabel1.Location = new System.Drawing.Point(215, 66);
-            this.transparentLabel1.Name = "transparentLabel1";
-            this.transparentLabel1.Size = new System.Drawing.Size(214, 51);
-            this.transparentLabel1.TabIndex = 1;
-            this.transparentLabel1.TabStop = false;
-            this.transparentLabel1.Text = "transparentLabel1";
+            this.transparentLabelCreateNew.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.transparentLabelCreateNew.Location = new System.Drawing.Point(215, 66);
+            this.transparentLabelCreateNew.Name = "transparentLabelCreateNew";
+            this.transparentLabelCreateNew.Size = new System.Drawing.Size(214, 51);
+            this.transparentLabelCreateNew.TabIndex = 1;
+            this.transparentLabelCreateNew.TabStop = false;
+            this.transparentLabelCreateNew.Text = "Create a new shortcut on your desktop";
             // 
-            // transparentLabel2
+            // transparentLabelTitle
             // 
-            this.transparentLabel2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.transparentLabel2.ForeColor = System.Drawing.Color.White;
-            this.transparentLabel2.Location = new System.Drawing.Point(240, 12);
-            this.transparentLabel2.Name = "transparentLabel2";
-            this.transparentLabel2.Size = new System.Drawing.Size(122, 37);
-            this.transparentLabel2.TabIndex = 2;
-            this.transparentLabel2.TabStop = false;
-            this.transparentLabel2.Text = "Foldit Config";
+            this.transparentLabelTitle.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.transparentLabelTitle.ForeColor = System.Drawing.Color.Black;
+            this.transparentLabelTitle.Location = new System.Drawing.Point(240, 12);
+            this.transparentLabelTitle.Name = "transparentLabelTitle";
+            this.transparentLabelTitle.Size = new System.Drawing.Size(122, 37);
+            this.transparentLabelTitle.TabIndex = 2;
+            this.transparentLabelTitle.TabStop = false;
+            this.transparentLabelTitle.Text = "Foldit Config";
             // 
             // buttonSwitchBlur
             // 
@@ -111,15 +113,15 @@ namespace foldit
             this.buttonSwitchBlur.UseVisualStyleBackColor = true;
             this.buttonSwitchBlur.Click += new System.EventHandler(this.buttonSwitchBlur_Click);
             // 
-            // transparentLabel3
+            // transparentLabelSwitch
             // 
-            this.transparentLabel3.ForeColor = System.Drawing.Color.Black;
-            this.transparentLabel3.Location = new System.Drawing.Point(215, 123);
-            this.transparentLabel3.Name = "transparentLabel3";
-            this.transparentLabel3.Size = new System.Drawing.Size(214, 33);
-            this.transparentLabel3.TabIndex = 4;
-            this.transparentLabel3.TabStop = false;
-            this.transparentLabel3.Text = "transparentLabel3";
+            this.transparentLabelSwitch.ForeColor = System.Drawing.Color.Black;
+            this.transparentLabelSwitch.Location = new System.Drawing.Point(215, 123);
+            this.transparentLabelSwitch.Name = "transparentLabelSwitch";
+            this.transparentLabelSwitch.Size = new System.Drawing.Size(214, 33);
+            this.transparentLabelSwitch.TabIndex = 4;
+            this.transparentLabelSwitch.TabStop = false;
+            this.transparentLabelSwitch.Text = "Switch between differents types of blur";
             // 
             // transparentLabelExit
             // 
@@ -196,11 +198,23 @@ namespace foldit
             this.transparentLabelAlpha.Text = "Alpha";
             this.transparentLabelAlpha.Visible = false;
             // 
+            // transparentLabelAbout
+            // 
+            this.transparentLabelAbout.ForeColor = System.Drawing.Color.Black;
+            this.transparentLabelAbout.Location = new System.Drawing.Point(533, 444);
+            this.transparentLabelAbout.Name = "transparentLabelAbout";
+            this.transparentLabelAbout.Size = new System.Drawing.Size(47, 23);
+            this.transparentLabelAbout.TabIndex = 12;
+            this.transparentLabelAbout.TabStop = false;
+            this.transparentLabelAbout.Text = "About";
+            this.transparentLabelAbout.Click += new System.EventHandler(this.transparentLabelAbout_Click);
+            // 
             // FolditConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(592, 479);
+            this.Controls.Add(this.transparentLabelAbout);
             this.Controls.Add(this.transparentLabelAlpha);
             this.Controls.Add(this.numericUpDownAlpha);
             this.Controls.Add(this.transparentLabelSetAccent);
@@ -208,14 +222,15 @@ namespace foldit
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.radioButtonContainer);
             this.Controls.Add(this.transparentLabelExit);
-            this.Controls.Add(this.transparentLabel3);
+            this.Controls.Add(this.transparentLabelSwitch);
             this.Controls.Add(this.buttonSwitchBlur);
-            this.Controls.Add(this.transparentLabel2);
-            this.Controls.Add(this.transparentLabel1);
+            this.Controls.Add(this.transparentLabelTitle);
+            this.Controls.Add(this.transparentLabelCreateNew);
             this.Controls.Add(this.buttonCreateNewFold);
             this.Name = "FolditConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FolditConfig";
+            this.Shown += new System.EventHandler(this.FolditConfig_Shown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form2_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAlpha)).EndInit();
             this.ResumeLayout(false);
@@ -225,11 +240,10 @@ namespace foldit
         #endregion
 
         private Button buttonCreateNewFold;
-        private Label label1;
-        private TransparentLabel transparentLabel1;
-        private TransparentLabel transparentLabel2;
+        private TransparentLabel transparentLabelCreateNew;
+        private TransparentLabel transparentLabelTitle;
         private Button buttonSwitchBlur;
-        private TransparentLabel transparentLabel3;
+        private TransparentLabel transparentLabelSwitch;
         private TransparentLabel transparentLabelExit;
         private TransparentLayout radioButtonContainer;
         private Button buttonDelete;
@@ -238,6 +252,7 @@ namespace foldit
         private TransparentLabel transparentLabelSetAccent;
         private NumericUpDown numericUpDownAlpha;
         private TransparentLabel transparentLabelAlpha;
+        private TransparentLabel transparentLabelAbout;
     }
 
 

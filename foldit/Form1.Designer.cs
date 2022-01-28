@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -7,6 +8,7 @@ using System.Windows.Forms;
 
 namespace foldit
 {
+
     public class TransparentLayout : System.Windows.Forms.FlowLayoutPanel
     {
         public TransparentLayout()
@@ -20,7 +22,6 @@ namespace foldit
             base.OnPaintBackground(e);
         }
     }
-
 
     partial class Form1
     {
@@ -37,13 +38,6 @@ namespace foldit
             base.Dispose(disposing);
         }
 
-        protected override void OnHandleCreated(EventArgs e)
-        {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            AppUtils.EnableAcrylic(this, Color.Transparent, (AppUtils.ACCENT)Properties.Settings.Default.Accent);
-            base.OnHandleCreated(e);
-        }
-
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             e.Graphics.Clear(Color.Transparent);
@@ -51,6 +45,7 @@ namespace foldit
         private TransparentLayout transparentLayout1;
         private TransparentLabel transparentLabel4;
     }
+
     public class TransparentLabel : Control
     {
         public TransparentLabel()
@@ -70,7 +65,7 @@ namespace foldit
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            // do nothing
+            // nothing
         }
 
         protected override void OnPaint(PaintEventArgs e)

@@ -10,7 +10,6 @@ namespace foldit
 {
     public partial class FolditConfig : Form
     {
-
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
@@ -28,15 +27,14 @@ namespace foldit
             InitializeComponent();
 
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = Icon.ExtractAssociatedIcon("./Icons/default.ico");
 
-            transparentLabel1.Text = "Create\r\n a new shortcut in your desktop";
-            transparentLabel1.ForeColor = Color.White;
-            transparentLabel3.Text = "Switch between differents type of blur";
-            transparentLabel3.ForeColor = Color.White;
+            transparentLabelCreateNew.ForeColor = Color.White;
+            transparentLabelTitle.ForeColor = Color.White;
+            transparentLabelSwitch.ForeColor = Color.White;
             transparentLabelSetAccent.ForeColor = Color.White;
             transparentLabelAlpha.ForeColor = Color.White;
-            numericUpDownAlpha.Value = Properties.Settings.Default.AlphaValue;
-
+            transparentLabelAbout.ForeColor = Color.White;
 
             if (Properties.Settings.Default.Accent == 2)
             {
@@ -48,15 +46,9 @@ namespace foldit
             {
                 buttonSetColor.Visible = false;
                 transparentLabelSetAccent.Visible = false;
+
             }
-            refresh();
-
         }
-
-
-        /// <summary>
-        /// Use to move the window by clicking in window's void
-        /// </summary>
 
         private void Form2_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
@@ -68,31 +60,31 @@ namespace foldit
         }
         private void buttonSwitchBlur_Click(object sender, EventArgs e)
         {
-            int accent = Properties.Settings.Default.Accent + 2;
+            int accent = Properties.Settings.Default.Accent + 1;
             switch (accent)
             {
-                case 3:
-                    buttonSetColor.Visible = false;
-                    transparentLabelAlpha.Visible = false;
-                    numericUpDownAlpha.Visible = false;
-                    transparentLabelSetAccent.Visible = false;
-                    setAllForeColor(Color.White);
-                    break;
-                /* fixme : when window start with this parameter, this last take a weird color
+            case 3:
+                buttonSetColor.Visible = false;
+                transparentLabelAlpha.Visible = false;
+                numericUpDownAlpha.Visible = false;
+                transparentLabelSetAccent.Visible = false;
+                setAllForeColor(Color.White);
+                break;
+               
             case 2:
                 numericUpDownAlpha.Visible = true;
                 buttonSetColor.Visible = true;
                 transparentLabelSetAccent.Visible = true;
                 transparentLabelAlpha.Visible = true;
                 break;
-                */
-                default:
-                    accent = 1;
-                    buttonSetColor.Visible = true;
-                    transparentLabelSetAccent.Visible = true;
-                    numericUpDownAlpha.Visible = false;
-                    transparentLabelAlpha.Visible = false;
-                    break;
+                
+            default:
+                accent = 1;
+                buttonSetColor.Visible = true;
+                transparentLabelSetAccent.Visible = true;
+                numericUpDownAlpha.Visible = false;
+                transparentLabelAlpha.Visible = false;
+                break;
             }
             Properties.Settings.Default.Accent = accent;
             Properties.Settings.Default.Save();
@@ -114,7 +106,7 @@ namespace foldit
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutLocation);
             shortcut.Description = "Shortcut created by foldit";   // The description of the shortcut
             shortcut.IconLocation = Environment.CurrentDirectory + "\\Icons\\" + String.Format("{0}.ico", id);           // The icon of the shortcut
-            shortcut.TargetPath = Environment.CurrentDirectory.ToString() + "\\foldit.exe"; ;                 // The path of the file that will launch when the shortcut is run
+            shortcut.TargetPath = Environment.CurrentDirectory.ToString() + "\\foldit.exe"; ;                 // The path of the file that will be launch when the shortcut is used
             shortcut.Arguments = id.ToString();
             shortcut.WorkingDirectory = Environment.CurrentDirectory;
             shortcut.Save();
@@ -127,7 +119,6 @@ namespace foldit
         }
         private void buttonDelete_click(object sender, EventArgs e)
         {
-
             foreach (RadioButton rb in radioButtonContainer.Controls)
             {
                 if (rb.Checked)
@@ -135,9 +126,7 @@ namespace foldit
                     radioButtonContainer.Controls.Remove(rb);
                     delete(int.Parse(rb.Tag.ToString()));
                 }
-
             }
-
         }
         private void buttonSetColor_Click(object sender, EventArgs e)
         {
@@ -166,12 +155,19 @@ namespace foldit
             Properties.Settings.Default.Save();
 
 
-            Debug.WriteLine("change color alpha done with : color -> " + newColor);
+            Debug.WriteLine("numericUpDOwnAlpha: color " + Properties.Settings.Default.Color);
+            Debug.WriteLine("numericUpDOwnAlpha: Accent " + (AppUtils.ACCENT)Properties.Settings.Default.Accent);
+
             refresh();
         }
         private void transparentLabelExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+        private void transparentLabelAbout_Click(object sender, EventArgs e)
+        {
+            var child = new Form3();
+            child.Show();
         }
 
         /// <summary>
@@ -203,7 +199,6 @@ namespace foldit
             }
             Properties.Settings.Default.ForeColor = newColor;
         }
-
         /// <summary>
         /// Evaluate brightness of the window backcolor to pick a visible font color 
         /// </summary>
@@ -220,11 +215,10 @@ namespace foldit
             }
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void FolditConfig_Shown(object sender, EventArgs e)
         {
-
+            refresh();
         }
+
     }
-
-
 }

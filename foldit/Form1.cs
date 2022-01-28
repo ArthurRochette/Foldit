@@ -292,7 +292,17 @@ namespace foldit
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach (string file in files)
             {
-                addElement(file);
+                if (file.Contains(".lnk"))
+                {
+                    MessageBox.Show("Please don't drag in shortcuts. Only file are accepted.");
+                    return;
+                }
+                else
+                {
+                    addElement(file);
+                }
+                
+
             }
             if (this.transparentLayout1.Controls.Count > 0)
             {
@@ -345,6 +355,7 @@ namespace foldit
             {
                 PictureBox pb = sender as PictureBox;
                 pb.Dispose();
+                applyNewIco(createIco());
             }
         }
 

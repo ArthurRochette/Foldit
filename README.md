@@ -10,7 +10,7 @@ Then start 'foldit.exe' , a config window will open up.
 ![config img](http://rochette-arthur.herokuapp.com/public/others/foldit_media_config.png)
 
 Create new Foldit will create a new shortcut into your desktop, you have to right click and pin it yourself to your taskbar.
-Then open up it, drag icons into, or right click to remove them.You can move it by clicking at the top and dragging it where you want.
+Then open up it, drag icons into, or right click to remove them. You can move it by clicking at the top and dragging it where you want.
 
 ![foldit img](http://rochette-arthur.herokuapp.com/public/others/foldit_media1.png)
 

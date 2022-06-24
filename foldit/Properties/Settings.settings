@@ -6,16 +6,16 @@
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="Accent" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="nbrGroup" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="Color" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Transparent</Value>
+      <Value Profile="(Default)">Black</Value>
     </Setting>
     <Setting Name="AlphaValue" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">255</Value>
+      <Value Profile="(Default)">200</Value>
     </Setting>
   </Settings>
 </SettingsFile>

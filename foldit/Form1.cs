@@ -7,12 +7,9 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 
-
-
 namespace foldit
 {
     
-
     public partial class Form1 : Form
     {
         protected int nbrIcon;

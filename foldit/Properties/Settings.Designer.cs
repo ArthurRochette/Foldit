@@ -37,7 +37,7 @@ namespace foldit.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
         public int Accent {
             get {
                 return ((int)(this["Accent"]));
@@ -55,14 +55,13 @@ namespace foldit.Properties {
                 return ((int)(this["nbrGroup"]));
             }
             set {
-                if(value < 0) value = 0;
                 this["nbrGroup"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Transparent")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
         public global::System.Drawing.Color Color {
             get {
                 return ((global::System.Drawing.Color)(this["Color"]));
@@ -74,7 +73,7 @@ namespace foldit.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("255")]
+        [global::System.Configuration.DefaultSettingValueAttribute("200")]
         public int AlphaValue {
             get {
                 return ((int)(this["AlphaValue"]));

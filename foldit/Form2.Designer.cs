@@ -185,6 +185,7 @@ namespace foldit
             this.numericUpDownAlpha.Size = new System.Drawing.Size(120, 23);
             this.numericUpDownAlpha.TabIndex = 10;
             this.numericUpDownAlpha.Visible = false;
+            this.numericUpDownAlpha.Value = Properties.Settings.Default.AlphaValue;
             this.numericUpDownAlpha.ValueChanged += new System.EventHandler(this.numericUpDownAlpha_ValueChanged);
             // 
             // transparentLabelAlpha

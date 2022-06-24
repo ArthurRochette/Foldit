@@ -28,6 +28,8 @@ namespace foldit
 
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = Icon.ExtractAssociatedIcon("./Icons/default.ico");
+            Color color = Properties.Settings.Default.Color;
+            Properties.Settings.Default.Color = Color.FromArgb(Properties.Settings.Default.AlphaValue, color.R, color.G, color.B); // for the first start
 
             transparentLabelCreateNew.ForeColor = Color.White;
             transparentLabelTitle.ForeColor = Color.White;
@@ -35,6 +37,8 @@ namespace foldit
             transparentLabelSetAccent.ForeColor = Color.White;
             transparentLabelAlpha.ForeColor = Color.White;
             transparentLabelAbout.ForeColor = Color.White;
+
+            
 
             if (Properties.Settings.Default.Accent == 2)
             {
